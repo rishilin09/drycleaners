@@ -1,5 +1,6 @@
 import 'package:drycleaners/Models/user.dart';
 
+///For creating Invoice
 class Invoice {
   final String title;
   final UserData userdata;
@@ -11,6 +12,7 @@ class Invoice {
   Invoice({required this.title,required this.userdata,required this.invoiceItems,required this.isDryCleaning,required this.total,required this.date});
 }
 
+///For storing invoice items
 class InvoiceItems{
   final String item;
   final String quantity;
@@ -20,6 +22,7 @@ class InvoiceItems{
   const InvoiceItems({required this.item,required this.quantity,required this.unitPrice,required this.totalUnitPrice});
 }
 
+///For transferring values from SelectionPage to FinalPage
 class Items {
 
   final bool isDryCleaning;
@@ -31,7 +34,7 @@ class Items {
 
 class ItemDetails {
 
-  final double quantity;
+  final int quantity;
   final double priceX;
   final double totalUnitPrice;
 

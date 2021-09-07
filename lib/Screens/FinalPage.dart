@@ -15,6 +15,8 @@ class FinalPage extends StatelessWidget {
 
     ///Accessing Current User Details
     final user = Provider.of<UserUID?>(context);
+
+    ///Accessing values from SelectionPage
     final counter = ModalRoute.of(context)!.settings.arguments as Items;
     final shirt = counter.itemDetails[0];
     final trousers = counter.itemDetails[1];
@@ -162,9 +164,9 @@ class FinalPage extends StatelessWidget {
               ///For Sending SMS
               final Telephony telephony = Telephony.instance;
               final fullName = invoice.userdata.fullName;
-              final shirtQ = double.parse(invoice.invoiceItems[0].quantity);
-              final trouserQ = double.parse(invoice.invoiceItems[1].quantity);
-              final sareeQ = double.parse(invoice.invoiceItems[2].quantity);
+              final shirtQ = int.parse(invoice.invoiceItems[0].quantity);
+              final trouserQ = int.parse(invoice.invoiceItems[1].quantity);
+              final sareeQ = int.parse(invoice.invoiceItems[2].quantity);
               final total = double.parse(invoice.total);
               final isDryCleaning = invoice.isDryCleaning;
               final message = messageBuild(fullName, shirtQ, trouserQ, sareeQ, total, isDryCleaning);
@@ -190,41 +192,41 @@ class FinalPage extends StatelessWidget {
     );
   }
 
-  String messageBuild(String fullName,double shirtQ,double trouserQ,double sareeQ,double total,bool isDryCleaning){
+  String messageBuild(String fullName,int shirtQ,int trouserQ,int sareeQ,double total,bool isDryCleaning){
     final service = isDryCleaning ? 'DryCleaning' : 'Ironing';
     String message = '';
-    if(shirtQ == 0.0){
-      if(trouserQ == 0.0)
-        message = 'Customer $fullName has placed order for\n$sareeQ sarees\nfor $service and total will be Rs $total';
-      else if(sareeQ == 0.0)
-        message = 'Customer $fullName has placed order for\n$trouserQ trousers\nfor $service and total will be Rs $total';
+    if(shirtQ == 0){
+      if(trouserQ == 0)
+        message = 'Customer $fullName has placed order for\n$sareeQ sarees for $service\nand total will be Rs $total';
+      else if(sareeQ == 0)
+        message = 'Customer $fullName has placed order for\n$trouserQ trousers for $service\nand total will be Rs $total';
       else
-        message = 'Customer $fullName has placed order for\n$trouserQ trousers &\n$sareeQ sarees\nfor $service and total will be Rs $total';
+        message = 'Customer $fullName has placed order for\n$trouserQ trousers &\n$sareeQ sarees for $service\nand total will be Rs $total';
     }
 
-    else if(trouserQ == 0.0){
-      if(shirtQ == 0.0)
-        message = 'Customer $fullName has placed order for\n$sareeQ sarees\nfor $service and total will be Rs $total';
-      else if(sareeQ == 0.0)
-        message = 'Customer $fullName has placed order for\n$shirtQ shirts\nfor $service and total will be Rs $total';
+    else if(trouserQ == 0){
+      if(shirtQ == 0)
+        message = 'Customer $fullName has placed order for\n$sareeQ sarees for $service\nand total will be Rs $total';
+      else if(sareeQ == 0)
+        message = 'Customer $fullName has placed order for\n$shirtQ shirts for $service\nand total will be Rs $total';
       else
-        message = 'Customer $fullName has placed order for\n$shirtQ shirts &\n$sareeQ sarees\nfor $service and total will be Rs $total';
+        message = 'Customer $fullName has placed order for\n$shirtQ shirts &\n$sareeQ sarees for $service\nand total will be Rs $total';
     }
 
-    else if(sareeQ == 0.0){
-      if(shirtQ == 0.0)
-        message = 'Customer $fullName has placed order for\n$trouserQ trousers\nfor $service and total will be Rs $total';
-      else if(trouserQ == 0.0)
-        message = 'Customer $fullName has placed order for\n$shirtQ shirts\nfor $service and total will be Rs $total';
+    else if(sareeQ == 0){
+      if(shirtQ == 0)
+        message = 'Customer $fullName has placed order for\n$trouserQ trousers for $service\nand total will be Rs $total';
+      else if(trouserQ == 0)
+        message = 'Customer $fullName has placed order for\n$shirtQ shirts for $service\nand total will be Rs $total';
       else
-        message = 'Customer $fullName has placed order for\n$shirtQ shirts &\n$trouserQ trousers\nfor $service and total will be Rs $total';
+        message = 'Customer $fullName has placed order for\n$shirtQ shirts &\n$trouserQ trousers for $service\nand total will be Rs $total';
     }
 
     else
-      message = 'Customer $fullName has placed order for\n$shirtQ shirts,\n$trouserQ trousers &\n$sareeQ sarees\nfor $service and total will be Rs $total';
+      message = 'Customer $fullName has placed order for\n$shirtQ shirts,\n$trouserQ trousers &\n$sareeQ sarees for $service\nand total will be Rs $total';
 
     return message;
-  }
+  } /*${shirtQ.toInt()}, {trouserQ.toInt()}, ${sareeQ.toInt()}*/
 /*final invoice = Invoice(
                 title: Strings.title,
                 userdata: UserData(

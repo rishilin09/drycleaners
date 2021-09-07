@@ -1,8 +1,10 @@
+///For streaming User UID
 class UserUID {
   final String uid;
   UserUID({required this.uid});
 }
 
+///For Streaming User Data
 class UserData {
   final String fullName;
   final String email;

@@ -7,9 +7,12 @@ class PayingServices with ChangeNotifier{
   double _totalShirtPay = 0.0;
   double _totalTrousersPay = 0.0;
   double _totalSareePay = 0.0;
-  double _noOfShirts = 0;
+  /*double _noOfShirts = 0;
   double _noOfTrousers = 0;
-  double _noOfSarees = 0;
+  double _noOfSarees = 0;*/
+  int _noOfShirts = 0;
+  int _noOfTrousers = 0;
+  int _noOfSarees = 0;
 
   ///Ironing price of shirt, trousers, and saree is 7, 7, and 20 rupees each
   double _iShirtPriceX = 7.0;
@@ -27,7 +30,7 @@ class PayingServices with ChangeNotifier{
   ///in SelectionPage Shirt TextFormField
   void shirtCalculate(String counter,bool isDryCleaning){
     counter = counter.isEmpty ? '0' : counter;
-    _noOfShirts = double.parse(counter);
+    _noOfShirts = int.parse(counter);
     _totalShirtPay = isDryCleaning ? (_dShirtPriceX*double.parse(counter)) : (_iShirtPriceX*double.parse(counter));
     _isDryCleaning = isDryCleaning;
     notifyListeners();
@@ -37,7 +40,7 @@ class PayingServices with ChangeNotifier{
   ///in SelectionPage Trousers TextFormField
   void trousersCalculate(String counter,bool isDryCleaning){
     counter = counter.isEmpty ? '0' : counter;
-    _noOfTrousers = double.parse(counter);
+    _noOfTrousers = int.parse(counter);
     _totalTrousersPay = isDryCleaning ? (_dTrousersPriceX*double.parse(counter)) : (_iTrousersPriceX*double.parse(counter));
     _isDryCleaning = isDryCleaning;
     notifyListeners();
@@ -47,7 +50,7 @@ class PayingServices with ChangeNotifier{
   ///in SelectionPage Saree TextFormField
   void sareeCalculate(String counter,bool isDryCleaning){
     counter = counter.isEmpty ? '0' : counter;
-    _noOfSarees = double.parse(counter);
+    _noOfSarees = int.parse(counter);
     _totalSareePay = isDryCleaning ? (_dSareePriceX*double.parse(counter)) : (_iSareePriceX*double.parse(counter));
     _isDryCleaning = isDryCleaning;
     notifyListeners();
@@ -58,13 +61,13 @@ class PayingServices with ChangeNotifier{
   bool get isDryCleaning => _isDryCleaning;
 
   ///Quantity of Shirts
-  double get noOfShirts => _noOfShirts;
+  int get noOfShirts => _noOfShirts;
 
   ///Quantity of Trousers
-  double get noOfTrousers => _noOfTrousers;
+  int get noOfTrousers => _noOfTrousers;
 
   ///Quantity of Sarees
-  double get noOfSarees => _noOfSarees;
+  int get noOfSarees => _noOfSarees;
 
   ///UnitPrice of Shirt
   double get shirtPriceX => isDryCleaning ? _dShirtPriceX : _iShirtPriceX;

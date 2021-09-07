@@ -177,9 +177,9 @@ class PdfInvoice {
           defaultColumnWidth: pw.FixedColumnWidth(50),
           children: [
             rowsHeaders(18.0, padding),
-            if (shirt.quantity != '0.0') invoiceRows(shirt, 15.0, padding),
-            if (trousers.quantity != '0.0') invoiceRows(trousers, 15.0, padding),
-            if (saree.quantity != '0.0') invoiceRows(saree, 15.0, padding),
+            if (shirt.quantity != '0') invoiceRows(shirt, 15.0, padding),
+            if (trousers.quantity != '0') invoiceRows(trousers, 15.0, padding),
+            if (saree.quantity != '0') invoiceRows(saree, 15.0, padding),
           ]);
 
   ///Headers for Table
