@@ -1,0 +1,93 @@
+name: drycleaners
+description: A new Flutter project.
+
+# The following line prevents the package from being accidentally published to
+# pub.dev using `pub publish`. This is preferred for private packages.
+publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+
+# The following defines the version and build number for your application.
+# A version number is three numbers separated by dots, like 1.2.43
+# followed by an optional build number separated by a +.
+# Both the version and the builder number may be overridden in flutter
+# build by specifying --build-name and --build-number, respectively.
+# In Android, build-name is used as versionName while build-number used as versionCode.
+# Read more about Android versioning at https://developer.android.com/studio/publish/versioning
+# In iOS, build-name is used as CFBundleShortVersionString while build-number used as CFBundleVersion.
+# Read more about iOS versioning at
+# https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.12.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+
+  # The following adds the Cupertino Icons font to your application.
+  # Use with the CupertinoIcons class for iOS style icons.
+  cupertino_icons: ^1.0.2
+
+  #Used for device screens sizes
+  flutter_screenutil: ^5.0.0+2
+
+  #Used for decoration
+  flutter_spinkit: ^5.0.0
+
+  #Used for Importing SVG Image
+  flutter_svg: ^0.22.0
+
+  #Used for building QR Code
+  qr_flutter: ^4.0.0
+
+  #Used for building providers
+  provider: ^5.0.0
+
+  #Used for user Authorization
+  firebase_auth: ^3.0.2
+
+  #Used for accessing Firebase cloud_firestore to store details
+  cloud_firestore: ^2.5.0
+
+  #Used for implementing Firebase functions
+  firebase_core: ^1.5.0
+
+  #Used for getting device storage path
+  path_provider: ^2.0.2
+
+  #Used for accessing Firebase storage and uploading QR Image data
+  firebase_storage: ^10.0.2
+
+  #Used for implementing PDF Invoice
+  pdf: ^3.4.2
+
+  #Used for Open File from provided file
+  open_file: ^3.2.1
+
+  #Used for printing QR Code in Invoice pdf
+  printing: ^5.5.0
+
+  #Used for Form Validation
+  form_field_validator: ^1.1.0
+
+  #Sending SMS
+  telephony: ^0.1.4
+
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+flutter:
+
+  uses-material-design: true
+
+  assets:
+    - assets/images/
+    - assets/fonts/
+
+  fonts:
+     - family: Ubuntu
+       fonts:
+         - asset: assets/fonts/Ubuntu-Regular.ttf
