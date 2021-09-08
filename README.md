@@ -8,7 +8,7 @@ Application will start from **main.dart** file since it is the **ROOT OF THE PRO
 
 **Assets** folder will contain *images* and *fonts* which will be used in application
 
-This project is been divided within **lib** folder as:
+This project is been divided within **lib** folder as
     - lib 
         -- config
         -- Models
