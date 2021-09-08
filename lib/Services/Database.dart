@@ -5,21 +5,20 @@ import 'package:drycleaners/projectImports.dart';
 
 class DataBaseServices {
   DataBaseServices({required this.uid});
+
   final String uid;
-
-
 
   ///This variable will contain User Collection reference from Firebase Cloud_Storage
   ///CollectionReference has a type of map where its key is String and value is dynamic
   ///FirebaseFirestore.instance.collection('users'); will generate a collection named 'users'
   ///where all the User UID in the form of documents will be added if not present already.
   final CollectionReference<Map<String, dynamic>> userCollection =
-  FirebaseFirestore.instance.collection('users');
+      FirebaseFirestore.instance.collection('users');
 
   ///User data will be added in new doc where doc is UID of the newly registered user
   ///Values will be in the form of Map Datatype provided from RegistrationPage
-  Future storeUserData(String fullName, String email, int phoneNumber,String url) async {
-
+  Future storeUserData(
+      String fullName, String email, int phoneNumber, String url) async {
     return await userCollection.doc(uid).set({
       'URL': url,
       'FullName': fullName,
@@ -29,10 +28,8 @@ class DataBaseServices {
   }
 
   ///This function will update value of URL field of the current user
-  Future updateQRString(String path) async{
-    return await userCollection.doc(uid).update(
-        {'URL': path}
-    );
+  Future updateQRString(String path) async {
+    return await userCollection.doc(uid).update({'URL': path});
   }
 
   ///Creating Stream of type UserData which is a defined class in lib->model folder
@@ -59,8 +56,6 @@ class DataBaseServices {
         fullName: snapshot.get('FullName'),
         email: snapshot.get('Email'),
         phoneNumber: snapshot.get('Phone-Number'),
-        url: snapshot.get('URL')
-    );
+        url: snapshot.get('URL'));
   }
-
 }

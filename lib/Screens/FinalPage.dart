@@ -7,12 +7,10 @@ import 'package:flutter_svg/flutter_svg.dart';*/
 import 'package:drycleaners/projectImports.dart';
 import 'package:telephony/telephony.dart';
 
-
 ///This Page will be the final page of the project where user will be downloading there invoice
 class FinalPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-
     ///Accessing Current User Details
     final user = Provider.of<UserUID?>(context);
 
@@ -69,10 +67,9 @@ class FinalPage extends StatelessWidget {
             );
             return Scaffold(
               body: Container(
-                decoration: BoxDecoration(gradient:gradientLayout),
+                decoration: BoxDecoration(gradient: gradientLayout),
                 child: Stack(
                   children: [
-
                     ///FinalPage UI
                     finalPageUI(context),
 
@@ -169,13 +166,11 @@ class FinalPage extends StatelessWidget {
               final sareeQ = int.parse(invoice.invoiceItems[2].quantity);
               final total = double.parse(invoice.total);
               final isDryCleaning = invoice.isDryCleaning;
-              final message = messageBuild(fullName, shirtQ, trouserQ, sareeQ, total, isDryCleaning);
+              final message = messageBuild(
+                  fullName, shirtQ, trouserQ, sareeQ, total, isDryCleaning);
               print(message);
               telephony.sendSms(
-                  to: "7021058163",
-                  message: message,
-                  isMultipart: true
-              );
+                  to: "7021058163", message: message, isMultipart: true);
               final pdfFile = await PdfInvoice.generate(invoice);
               return PdfApi.openFile(pdfFile);
             },
@@ -192,70 +187,44 @@ class FinalPage extends StatelessWidget {
     );
   }
 
-  String messageBuild(String fullName,int shirtQ,int trouserQ,int sareeQ,double total,bool isDryCleaning){
+  String messageBuild(String fullName, int shirtQ, int trouserQ, int sareeQ,
+      double total, bool isDryCleaning) {
     final service = isDryCleaning ? 'DryCleaning' : 'Ironing';
     String message = '';
-    if(shirtQ == 0){
-      if(trouserQ == 0)
-        message = 'Customer $fullName has placed order for\n$sareeQ sarees for $service\nand total will be Rs $total';
-      else if(sareeQ == 0)
-        message = 'Customer $fullName has placed order for\n$trouserQ trousers for $service\nand total will be Rs $total';
+    if (shirtQ == 0) {
+      if (trouserQ == 0)
+        message =
+            'Customer $fullName has placed order for\n$sareeQ sarees for $service\nand total will be Rs $total';
+      else if (sareeQ == 0)
+        message =
+            'Customer $fullName has placed order for\n$trouserQ trousers for $service\nand total will be Rs $total';
       else
-        message = 'Customer $fullName has placed order for\n$trouserQ trousers &\n$sareeQ sarees for $service\nand total will be Rs $total';
-    }
-
-    else if(trouserQ == 0){
-      if(shirtQ == 0)
-        message = 'Customer $fullName has placed order for\n$sareeQ sarees for $service\nand total will be Rs $total';
-      else if(sareeQ == 0)
-        message = 'Customer $fullName has placed order for\n$shirtQ shirts for $service\nand total will be Rs $total';
+        message =
+            'Customer $fullName has placed order for\n$trouserQ trousers &\n$sareeQ sarees for $service\nand total will be Rs $total';
+    } else if (trouserQ == 0) {
+      if (shirtQ == 0)
+        message =
+            'Customer $fullName has placed order for\n$sareeQ sarees for $service\nand total will be Rs $total';
+      else if (sareeQ == 0)
+        message =
+            'Customer $fullName has placed order for\n$shirtQ shirts for $service\nand total will be Rs $total';
       else
-        message = 'Customer $fullName has placed order for\n$shirtQ shirts &\n$sareeQ sarees for $service\nand total will be Rs $total';
-    }
-
-    else if(sareeQ == 0){
-      if(shirtQ == 0)
-        message = 'Customer $fullName has placed order for\n$trouserQ trousers for $service\nand total will be Rs $total';
-      else if(trouserQ == 0)
-        message = 'Customer $fullName has placed order for\n$shirtQ shirts for $service\nand total will be Rs $total';
+        message =
+            'Customer $fullName has placed order for\n$shirtQ shirts &\n$sareeQ sarees for $service\nand total will be Rs $total';
+    } else if (sareeQ == 0) {
+      if (shirtQ == 0)
+        message =
+            'Customer $fullName has placed order for\n$trouserQ trousers for $service\nand total will be Rs $total';
+      else if (trouserQ == 0)
+        message =
+            'Customer $fullName has placed order for\n$shirtQ shirts for $service\nand total will be Rs $total';
       else
-        message = 'Customer $fullName has placed order for\n$shirtQ shirts &\n$trouserQ trousers for $service\nand total will be Rs $total';
-    }
-
-    else
-      message = 'Customer $fullName has placed order for\n$shirtQ shirts,\n$trouserQ trousers &\n$sareeQ sarees for $service\nand total will be Rs $total';
+        message =
+            'Customer $fullName has placed order for\n$shirtQ shirts &\n$trouserQ trousers for $service\nand total will be Rs $total';
+    } else
+      message =
+          'Customer $fullName has placed order for\n$shirtQ shirts,\n$trouserQ trousers &\n$sareeQ sarees for $service\nand total will be Rs $total';
 
     return message;
-  } /*${shirtQ.toInt()}, {trouserQ.toInt()}, ${sareeQ.toInt()}*/
-/*final invoice = Invoice(
-                title: Strings.title,
-                userdata: UserData(
-                    fullName: 'Rishikesh Lingayat',
-                    email: 'rishikeshlingayat5062@gmail.com',
-                    phoneNumber: 7021058163,
-                    url: 'No URL',
-                        /*'https://firebasestorage.googleapis.com/v0/b/drycleanersproject-48a0f.appspot.com/o/userQRCodes%2FRishikesh%20Lingayat-qr.png?alt=media&token=90f5a323-2c27-429d-818c-50d36188a793'*/
-                ),
-                invoiceItems: [
-                  InvoiceItems(
-                      item: 'Shirts',
-                      quantity: 0.0.toString(),
-                      unitPrice: 5.0.toString(),
-                      totalUnitPrice: 10.toString()),
-                  InvoiceItems(
-                      item: 'Trousers',
-                      quantity: 2.0.toString(),
-                      unitPrice: 5.0.toString(),
-                      totalUnitPrice: 10.toString()),
-                  InvoiceItems(
-                      item: 'Sarees',
-                      quantity: 1.0.toString(),
-                      unitPrice: 10.0.toString(),
-                      totalUnitPrice: 10.0.toString()),
-                ],
-                isDryCleaning: false,
-                total: 30.toString(),
-                date: DateTime.now(),
-              );*/
-
+  }
 }

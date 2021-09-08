@@ -1,15 +1,13 @@
 import 'package:flutter/cupertino.dart';
 
 ///ChangeNotifier will help to change the state of the SelectionPage
-class PayingServices with ChangeNotifier{
-
+class PayingServices with ChangeNotifier {
   ///Declarations and Initializations
   double _totalShirtPay = 0.0;
   double _totalTrousersPay = 0.0;
   double _totalSareePay = 0.0;
-  /*double _noOfShirts = 0;
-  double _noOfTrousers = 0;
-  double _noOfSarees = 0;*/
+
+  ///Quantity of items
   int _noOfShirts = 0;
   int _noOfTrousers = 0;
   int _noOfSarees = 0;
@@ -28,34 +26,39 @@ class PayingServices with ChangeNotifier{
 
   ///This function will calculate total cost of total n.o of shirts provided as String values
   ///in SelectionPage Shirt TextFormField
-  void shirtCalculate(String counter,bool isDryCleaning){
+  void shirtCalculate(String counter, bool isDryCleaning) {
     counter = counter.isEmpty ? '0' : counter;
     _noOfShirts = int.parse(counter);
-    _totalShirtPay = isDryCleaning ? (_dShirtPriceX*double.parse(counter)) : (_iShirtPriceX*double.parse(counter));
+    _totalShirtPay = isDryCleaning
+        ? (_dShirtPriceX * double.parse(counter))
+        : (_iShirtPriceX * double.parse(counter));
     _isDryCleaning = isDryCleaning;
     notifyListeners();
   }
 
   ///This function will calculate total cost of total n.o of trousers provided as String values
   ///in SelectionPage Trousers TextFormField
-  void trousersCalculate(String counter,bool isDryCleaning){
+  void trousersCalculate(String counter, bool isDryCleaning) {
     counter = counter.isEmpty ? '0' : counter;
     _noOfTrousers = int.parse(counter);
-    _totalTrousersPay = isDryCleaning ? (_dTrousersPriceX*double.parse(counter)) : (_iTrousersPriceX*double.parse(counter));
+    _totalTrousersPay = isDryCleaning
+        ? (_dTrousersPriceX * double.parse(counter))
+        : (_iTrousersPriceX * double.parse(counter));
     _isDryCleaning = isDryCleaning;
     notifyListeners();
   }
 
   ///This function will calculate total cost of total n.o of saree provided as String values
   ///in SelectionPage Saree TextFormField
-  void sareeCalculate(String counter,bool isDryCleaning){
+  void sareeCalculate(String counter, bool isDryCleaning) {
     counter = counter.isEmpty ? '0' : counter;
     _noOfSarees = int.parse(counter);
-    _totalSareePay = isDryCleaning ? (_dSareePriceX*double.parse(counter)) : (_iSareePriceX*double.parse(counter));
+    _totalSareePay = isDryCleaning
+        ? (_dSareePriceX * double.parse(counter))
+        : (_iSareePriceX * double.parse(counter));
     _isDryCleaning = isDryCleaning;
     notifyListeners();
   }
-
 
   ///Bool value to check whether DryCleaning or Ironing
   bool get isDryCleaning => _isDryCleaning;
@@ -73,7 +76,8 @@ class PayingServices with ChangeNotifier{
   double get shirtPriceX => isDryCleaning ? _dShirtPriceX : _iShirtPriceX;
 
   ///UnitPrice of Trousers
-  double get trousersPriceX => isDryCleaning ? _dTrousersPriceX : _iTrousersPriceX;
+  double get trousersPriceX =>
+      isDryCleaning ? _dTrousersPriceX : _iTrousersPriceX;
 
   ///UnitPrice of Saree
   double get sareePriceX => isDryCleaning ? _dSareePriceX : _iSareePriceX;
@@ -89,5 +93,4 @@ class PayingServices with ChangeNotifier{
 
   ///Total cost of total n.o of saree
   double get totalSareePay => _totalSareePay;
-
 }

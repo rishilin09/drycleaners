@@ -23,7 +23,6 @@ class SelectionProvider extends StatelessWidget {
 ///SelectionProvider ==> Parent providing class for SelectionPage
 ///SelectionPage ==> SelectionProvider's Child that will catch provided values
 
-
 ///This class will catch the provided values from ChangeNotifierProvider which is
 ///defined is SelectionProvider class.
 ///This class will let users select how many clothes and which type of
@@ -50,7 +49,7 @@ class _SelectionPageState extends State<SelectionPage> {
 
   ///To refresh the controller for new use. It will run at the end
   @override
-  void dispose(){
+  void dispose() {
     _shirtValidate.dispose();
     _trouserValidate.dispose();
     _sareeValidate.dispose();
@@ -64,7 +63,6 @@ class _SelectionPageState extends State<SelectionPage> {
     ///navigating from HomePage to SelectionPage
     final service = ModalRoute.of(context)!.settings.arguments;
     final counter = Provider.of<PayingServices>(context);
-
 
     ///Bool variable for checking if service selected in HomePage is DryCleaning or not
     isDryCleaning = (service == 'DryCleaning') ? true : false;
@@ -87,11 +85,12 @@ class _SelectionPageState extends State<SelectionPage> {
               errorText(),
 
               ///ItemBuild
-              itemBuild(counter), //,_shirtValidate,_trouserValidate,_sareeValidate
+              itemBuild(counter),
+              //,_shirtValidate,_trouserValidate,_sareeValidate
 
               ///Pay Button
-              payButton(counter) //,_shirtValidate,_trouserValidate,_sareeValidate
-
+              payButton(counter)
+              //,_shirtValidate,_trouserValidate,_sareeValidate
             ],
           ),
         ),
@@ -143,10 +142,7 @@ class _SelectionPageState extends State<SelectionPage> {
       child: Container(
         child: Text(
           error,
-          style: TextStyle(
-            fontSize: 16.sp,
-            color: Colors.red
-          ),
+          style: TextStyle(fontSize: 16.sp, color: Colors.red),
         ),
       ),
     );
@@ -157,16 +153,19 @@ class _SelectionPageState extends State<SelectionPage> {
   ///Due to 'final counter = Provider.of<PayingServices>(context);' variable, values
   ///for each shirt, trousers and saree will get updated everytime as user changes
   ///values in TextFormField and stored in respective variables in PayingServices class.
-  Widget itemBuild(counter){ //,shirtValidate,trouserValidate,sareeValidate
+  Widget itemBuild(counter) {
+    //,shirtValidate,trouserValidate,sareeValidate
     return Stack(
       children: [
         itemChoose(436.h, ImageStrings.sareeImg, counter, _shirtValidate),
-        itemChoose(320.h, ImageStrings.trousersImg, counter,_trouserValidate),
-        itemChoose(213.h, ImageStrings.shirtImg, counter,_sareeValidate),
+        itemChoose(320.h, ImageStrings.trousersImg, counter, _trouserValidate),
+        itemChoose(213.h, ImageStrings.shirtImg, counter, _sareeValidate),
       ],
     );
   }
-  Widget itemChoose(top, img, PayingServices counter,TextEditingController tController) {
+
+  Widget itemChoose(
+      top, img, PayingServices counter, TextEditingController tController) {
     return Padding(
       padding: EdgeInsets.only(top: top), //213.h),
       child: Row(
@@ -194,7 +193,9 @@ class _SelectionPageState extends State<SelectionPage> {
             //InputFields
             SizedBox(
               width: 150.w,
-              child: TextField(    ///TextFormField
+              child: TextField(
+
+                  ///TextFormField
                   controller: tController,
                   textAlign: TextAlign.center,
                   decoration: textInputDecoration,
@@ -202,18 +203,21 @@ class _SelectionPageState extends State<SelectionPage> {
                   onChanged: (val) {
                     switch (img) {
                       case ImageStrings.shirtImg:
+
                         ///This will change values for n.o of shirts
                         ///everytime when value is changed
                         counter.shirtCalculate(val, isDryCleaning);
                         break;
 
                       case ImageStrings.trousersImg:
+
                         ///This will change values for n.o of trousers
                         ///everytime when value is changed
                         counter.trousersCalculate(val, isDryCleaning);
                         break;
 
                       default:
+
                         ///This will change values for n.o of sarees
                         ///everytime when value is changed
                         counter.sareeCalculate(val, isDryCleaning);
@@ -229,7 +233,8 @@ class _SelectionPageState extends State<SelectionPage> {
   ///This function will listen to changes provided by PayingServices class which is in lib->Services->SelectionLogic.dart file.
   ///Due to 'final counter = Provider.of<PayingServices>(context);' variable, total value
   ///for all clothes will be displayed. Total value will keep on updating when user will change values.
-  Widget payButton(PayingServices counter) {  //,TextEditingController shirtValidate,TextEditingController trouserValidate,TextEditingController sareeValidate
+  Widget payButton(PayingServices counter) {
+    //,TextEditingController shirtValidate,TextEditingController trouserValidate,TextEditingController sareeValidate
     return Positioned(
       left: 150.w,
       top: 531.h,
@@ -257,19 +262,19 @@ class _SelectionPageState extends State<SelectionPage> {
                               isDryCleaning: isDryCleaning,
                               total: counter.totalPay,
                               itemDetails: [
-                                ItemDetails(
-                                    quantity: counter.noOfShirts,
-                                    priceX: counter.shirtPriceX,
-                                    totalUnitPrice: counter.totalShirtPay),
-                                ItemDetails(
-                                    quantity: counter.noOfTrousers,
-                                    priceX: counter.trousersPriceX,
-                                    totalUnitPrice: counter.totalTrousersPay),
-                                ItemDetails(
-                                    quantity: counter.noOfSarees,
-                                    priceX: counter.sareePriceX,
-                                    totalUnitPrice: counter.totalSareePay)
-                              ]))));
+                            ItemDetails(
+                                quantity: counter.noOfShirts,
+                                priceX: counter.shirtPriceX,
+                                totalUnitPrice: counter.totalShirtPay),
+                            ItemDetails(
+                                quantity: counter.noOfTrousers,
+                                priceX: counter.trousersPriceX,
+                                totalUnitPrice: counter.totalTrousersPay),
+                            ItemDetails(
+                                quantity: counter.noOfSarees,
+                                priceX: counter.sareePriceX,
+                                totalUnitPrice: counter.totalSareePay)
+                          ]))));
             }
           },
           style: ElevatedButton.styleFrom(

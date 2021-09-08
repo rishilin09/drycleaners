@@ -9,7 +9,6 @@ import 'package:drycleaners/projectImports.dart';
 
 ///This class is a SplashScreen which will seen for 5 seconds when the app gets started
 class SplashScreen extends StatefulWidget {
-
   @override
   _SplashScreenState createState() => _SplashScreenState();
 }
@@ -24,10 +23,11 @@ class _SplashScreenState extends State<SplashScreen> {
     super.initState();
     _timer = Timer(
         Duration(seconds: 5),
+
         ///pushReplacement will push the provided Widget('Wrapper()') in the
         ///replacement of the previous Widget('SplashScreen()') and context will also
         ///get shifted.
-            () => Navigator.pushReplacement(
+        () => Navigator.pushReplacement(
             context, MaterialPageRoute(builder: (context) => Wrapper())));
   }
 
@@ -51,7 +51,6 @@ class _SplashScreenState extends State<SplashScreen> {
         ),
         child: Stack(
           children: <Widget>[
-
             //Wandering Cubes Animation
             Center(
               child: Padding(
@@ -108,10 +107,9 @@ class _SplashScreenState extends State<SplashScreen> {
                 child: Container(
                   decoration: BoxDecoration(
                       image: DecorationImage(
-                        image: AssetImage('assets/images/laundry.png'),
-                        fit: BoxFit.fitWidth,
-                      )
-                  ),
+                    image: AssetImage('assets/images/laundry.png'),
+                    fit: BoxFit.fitWidth,
+                  )),
                 ),
               ),
             ),

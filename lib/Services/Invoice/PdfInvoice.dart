@@ -3,14 +3,11 @@ import 'package:pdf/widgets.dart';
 import 'package:pdf/widgets.dart' as pw;
 import 'package:printing/printing.dart';
 
-
 ///This Class will build the Invoice for the user
 class PdfInvoice {
-
   ///This method generates invoice. invoice parameter of Invoice type is passed which will
   ///help to create the invoice.
   static Future<File> generate(Invoice invoice) async {
-
     ///If the qrImg is null then qrImg will be set to 'No URL' else it will take the
     ///invoice.userdata.url value
     final qrImg = invoice.userdata.url != 'No URL'
@@ -84,8 +81,7 @@ class PdfInvoice {
         pageFormat: pageFormat,
         theme: theme,
         buildBackground: (context) => pw.FullPage(
-            ignoreMargins: true,
-            child: invoiceUI(dateTime, 430.0, 670.0)),
+            ignoreMargins: true, child: invoiceUI(dateTime, 430.0, 670.0)),
       );
 
   ///PDF background UI

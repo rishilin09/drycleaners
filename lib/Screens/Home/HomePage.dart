@@ -14,7 +14,6 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-
   ///Declarations and Initializations
   final AuthService _auth = AuthService();
   final List<String> servicesList = [
@@ -27,7 +26,6 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       body: Stack(
         children: <Widget>[
-
           ///Logo and Backgorund
           homeLogo(),
 
@@ -36,7 +34,6 @@ class _HomePageState extends State<HomePage> {
 
           ///Services List
           services(),
-
         ],
       ),
     );
@@ -45,13 +42,13 @@ class _HomePageState extends State<HomePage> {
   ///HomePage AppBar
   Padding homeBar() {
     return Padding(
-      padding: EdgeInsets.only(right: 15.w), //EdgeInsets.only(top: 10.h,right: 18.w),
+      padding: EdgeInsets.only(right: 15.w),
+      //EdgeInsets.only(top: 10.h,right: 18.w),
       child: AppBar(
         backgroundColor: Colors.transparent,
         automaticallyImplyLeading: false,
         elevation: 0.0,
         actions: [
-
           ///Navigation to DetailsPage
           Column(
             children: [
@@ -61,12 +58,12 @@ class _HomePageState extends State<HomePage> {
                 child: IconButton(
                   onPressed: () {
                     ///Navigation to DetailsPage
-                    Navigator.push(context, MaterialPageRoute(builder: (context) => DetailsPage()));
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => DetailsPage()));
                   },
                   icon: Icon(Icons.people_alt_rounded),
                 ),
               ),
-
               Align(
                 alignment: Alignment.center,
                 child: Text(
@@ -121,7 +118,6 @@ class _HomePageState extends State<HomePage> {
       child: Container(
         child: Stack(
           children: [
-
             ///Services Text
             Positioned(
               top: 316.h,
@@ -137,6 +133,7 @@ class _HomePageState extends State<HomePage> {
             ///List of Services
             Padding(
               padding: EdgeInsets.only(top: 367.h),
+
               ///To build ListView of Services
               child: ListView.builder(
                   itemCount: servicesList.length,
@@ -181,7 +178,6 @@ class _HomePageState extends State<HomePage> {
                     );
                   }),
             ),
-
           ],
         ),
       ),
@@ -199,7 +195,6 @@ class _HomePageState extends State<HomePage> {
       ),
       child: Stack(
         children: [
-
           ///Creating Circle
           Padding(
             padding: EdgeInsets.only(top: 55.h, bottom: 50.h), //50.h,
@@ -227,10 +222,8 @@ class _HomePageState extends State<HomePage> {
                   cacheWidth: 160.h.toInt(), cacheHeight: 160.h.toInt()),
             ),
           ),
-
         ],
       ),
     );
   }
-
 }

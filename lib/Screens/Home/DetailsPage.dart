@@ -26,7 +26,6 @@ class _DetailsPageState extends State<DetailsPage> {
 
   @override
   Widget build(BuildContext context) {
-
     ///Accessing Current User Details
     final user = Provider.of<UserUID?>(context);
 
@@ -37,7 +36,6 @@ class _DetailsPageState extends State<DetailsPage> {
         stream: DataBaseServices(uid: user!.uid).userData,
         builder: (context, snapshot) {
           if (snapshot.hasData) {
-
             ///Current User Data is accessed from Cloud_Storage
             UserData? userData = snapshot.data;
 
@@ -75,13 +73,11 @@ class _DetailsPageState extends State<DetailsPage> {
             ];
 
             return Scaffold(
-
               body: Container(
                 width: ScreenUtil().screenWidth,
                 height: ScreenUtil().screenHeight,
                 child: Stack(
                   children: <Widget>[
-
                     ///Circle UI
                     CircleUI(),
 
@@ -102,7 +98,6 @@ class _DetailsPageState extends State<DetailsPage> {
 
                     ///User Barcode
                     barcodeCard(qrcode, fullName, user),
-
                   ],
                 ),
               ),
@@ -124,7 +119,7 @@ class _DetailsPageState extends State<DetailsPage> {
   ///Pop Page
   Padding pop() {
     return Padding(
-      padding: EdgeInsets.only(bottom:10.h),
+      padding: EdgeInsets.only(bottom: 10.h),
       child: IconButton(
         onPressed: () {
           ///Navigation back to HomePage
@@ -140,7 +135,7 @@ class _DetailsPageState extends State<DetailsPage> {
   ///Barcode Image
   Container barcodeCard(qrcode, fullName, user) {
     return Container(
-      margin: EdgeInsets.only(top:423.h,bottom:5.h),
+      margin: EdgeInsets.only(top: 423.h, bottom: 5.h),
       height: 225.h,
       width: double.infinity,
       child: Card(
@@ -151,7 +146,6 @@ class _DetailsPageState extends State<DetailsPage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-
             ///RepaintBoundary will help to convert User Barcode to Imageformat which further will be uploaded
             RepaintBoundary(
               key: _key,
@@ -172,41 +166,39 @@ class _DetailsPageState extends State<DetailsPage> {
 
             ///Upload Barcode Image
             SizedBox(
-                height: 30.h,
-                child: isuploaded
-                    ? const SizedBox.shrink()
-                    : ElevatedButton.icon(
-                        onPressed: () async {
-                          ///QRImage with user details will be uploaded to Firebase Storage
-                          await qr.uploadImage(fullName, _key);
+              height: 30.h,
+              child: isuploaded
+                  ? const SizedBox.shrink()
+                  : ElevatedButton.icon(
+                      onPressed: () async {
+                        ///QRImage with user details will be uploaded to Firebase Storage
+                        await qr.uploadImage(fullName, _key);
 
-                          ///URL of the QRImage will be retrieved
-                          final url = await qr.qrURL(fullName);
+                        ///URL of the QRImage will be retrieved
+                        final url = await qr.qrURL(fullName);
 
-                          ///URL will be stored in respective document of the user
-                          await DataBaseServices(uid: user!.uid).updateQRString(url);
+                        ///URL will be stored in respective document of the user
+                        await DataBaseServices(uid: user!.uid)
+                            .updateQRString(url);
 
-                          setState(() {
-                            isuploaded = true;
-                          });
+                        setState(() {
+                          isuploaded = true;
+                        });
 
-                          ///Text Creation for SnackBar
-                          final snackBar = SnackBar(
-                            content: const Text(
-                                Strings.barcodeUploaded
-                            ),
-                            backgroundColor: Colors.black,
-                          );
+                        ///Text Creation for SnackBar
+                        final snackBar = SnackBar(
+                          content: const Text(Strings.barcodeUploaded),
+                          backgroundColor: Colors.black,
+                        );
 
-                          ///SnackBar Creation
-                          ScaffoldMessenger.of(context)
-                              .showSnackBar(snackBar);
-                        },
-                        icon: Icon(Icons.arrow_circle_up),
-                        label: Text(
-                          Strings.upload,
-                        ),
+                        ///SnackBar Creation
+                        ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                      },
+                      icon: Icon(Icons.arrow_circle_up),
+                      label: Text(
+                        Strings.upload,
                       ),
+                    ),
             ),
           ],
         ),
@@ -231,9 +223,13 @@ class _DetailsPageState extends State<DetailsPage> {
             child: Container(
               height: 65.h,
               child: ListTile(
-                leading: details[index]['Icon'], ///Icon
+                leading: details[index]['Icon'],
+
+                ///Icon
                 title: Text(
-                  details[index]['Title'], ///Title
+                  details[index]['Title'],
+
+                  ///Title
                   style: TextStyle(
                     fontSize: 13.sp,
                     fontWeight: FontWeight.bold,
@@ -241,7 +237,9 @@ class _DetailsPageState extends State<DetailsPage> {
                   ),
                 ),
                 subtitle: Text(
-                  details[index]['SubTitle'], ///SubTitle
+                  details[index]['SubTitle'],
+
+                  ///SubTitle
                   style: TextStyle(
                     fontSize: 15.sp,
                     fontWeight: FontWeight.bold,

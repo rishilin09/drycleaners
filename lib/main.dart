@@ -5,14 +5,11 @@ import 'package:flutter/material.dart';
 //import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
-import 'package:drycleaners/Services/Auth.dart';
-import 'package:drycleaners/Services/InvoiceDetailsExample.dart';*/
+import 'package:drycleaners/Services/Auth.dart';*/
 
 import 'package:drycleaners/projectImports.dart';
 
-
 void main() async {
-
   ///This will help to bind all the widgets used in the project
   WidgetsFlutterBinding.ensureInitialized();
 
@@ -41,8 +38,7 @@ class MyApp extends StatelessWidget {
           home: SplashScreen(),
         ),
       ),
-        designSize: const Size(360, 640),
-      );
-    }
+      designSize: const Size(360, 640),
+    );
   }
-
+}

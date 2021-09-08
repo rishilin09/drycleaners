@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';*/
 import 'package:flutter/cupertino.dart';
 import 'package:drycleaners/projectImports.dart';
 
-
 class ProjectColors {
   ProjectColors._();
+
   static Color primary = Color.fromRGBO(12, 85, 226, 1.0);
   static Color secondary = Color.fromRGBO(2, 209, 225, 0.8);
   static Color dprimary = Color.fromRGBO(12, 85, 226, 0.6);
@@ -15,6 +15,7 @@ class ProjectColors {
 
 class Strings {
   Strings._();
+
   static const title = 'DryCleaners';
   static const login = 'Login';
   static const invoice = 'Invoice';
@@ -49,6 +50,7 @@ class Strings {
 
 class ImageStrings {
   ImageStrings._();
+
   static const laundryimg = 'assets/images/laundry.png';
   static const loginimg = 'assets/images/login.svg';
   static const registerimg = 'assets/images/register.svg';
@@ -64,6 +66,7 @@ class ImageStrings {
 
 class ProjectIcons {
   ProjectIcons._();
+
   static const loginIcon = Icon(Icons.login);
   static const emailIcon = Icon(Icons.email_outlined);
   static const prefixPasswordIcon = Icon(Icons.vpn_key_outlined);

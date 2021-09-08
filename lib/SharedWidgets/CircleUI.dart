@@ -6,12 +6,10 @@ import 'package:drycleaners/projectImports.dart';
 
 ///This class will provide Circular shapes for decoration
 class CircleUI extends StatelessWidget {
-
   @override
   Widget build(BuildContext context) {
     return Stack(
       children: [
-
         ///Secondary circle
         Positioned(
           left: 180.w,

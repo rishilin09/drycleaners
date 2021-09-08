@@ -13,15 +13,14 @@ import 'package:form_field_validator/form_field_validator.dart';
 ///This Class will show RegisterPage for users if account is not been registered
 class RegisterPage extends StatefulWidget {
   final Function toggleView;
-  RegisterPage({required this.toggleView});
 
+  RegisterPage({required this.toggleView});
 
   @override
   _RegisterPageState createState() => _RegisterPageState();
 }
 
 class _RegisterPageState extends State<RegisterPage> {
-
   ///Declarations and Initializations
   final _formkey = GlobalKey<FormState>();
   final AuthService _auth = AuthService();
@@ -51,9 +50,8 @@ class _RegisterPageState extends State<RegisterPage> {
                   key: _formkey,
                   child: Stack(
                     children: <Widget>[
-
                       ///Image and Title
-                      widgetUI(Strings.register,50.h, 110.h, 110.w, 110.h,
+                      widgetUI(Strings.register, 50.h, 110.h, 110.w, 110.h,
                           ImageStrings.registerimg),
 
                       ///Circle UI design
@@ -79,7 +77,6 @@ class _RegisterPageState extends State<RegisterPage> {
   Stack registerBuild() {
     return Stack(
       children: [
-
         ///FullName TextFormField
         Padding(
           padding: EdgeInsets.only(top: 230.h, left: 27.w, right: 27.w),
@@ -111,10 +108,9 @@ class _RegisterPageState extends State<RegisterPage> {
                   prefixIcon: ProjectIcons.emailIcon,
                   errorStyle: TextStyle(fontSize: 12.sp, height: 0.5.h)),
               validator: MultiValidator([
-                  RequiredValidator(errorText: Strings.rEmail),
-                  EmailValidator(errorText: Strings.eEmail),
-                ]
-              ),
+                RequiredValidator(errorText: Strings.rEmail),
+                EmailValidator(errorText: Strings.eEmail),
+              ]),
               onChanged: (val) {
                 setState(() => email = val);
               },
@@ -169,7 +165,8 @@ class _RegisterPageState extends State<RegisterPage> {
               ),
               validator: MultiValidator([
                 RequiredValidator(errorText: Strings.rPhoneNumber),
-                LengthRangeValidator(min: 10, max: 10 ,errorText: Strings.ePhoneNumber),
+                LengthRangeValidator(
+                    min: 10, max: 10, errorText: Strings.ePhoneNumber),
               ]),
               onChanged: (val) {
                 setState(() => phoneNumber = int.parse(val));
@@ -189,7 +186,6 @@ class _RegisterPageState extends State<RegisterPage> {
             ),
           ),
         ),
-
       ],
     );
   }
@@ -245,7 +241,7 @@ class _RegisterPageState extends State<RegisterPage> {
         loading = true;
       });
       dynamic result = await _auth.registerWithEmailAndPassword(
-          email, password, fullName, phoneNumber,url);
+          email, password, fullName, phoneNumber, url);
       if (result == null) {
         setState(() {
           error = 'Please supply a valid details';
@@ -255,4 +251,3 @@ class _RegisterPageState extends State<RegisterPage> {
     }
   }
 }
-

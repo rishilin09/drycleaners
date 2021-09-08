@@ -11,7 +11,6 @@ import 'package:drycleaners/projectImports.dart';
 ///through Authenticate function else if it is not null that means user has either been newly Register or
 ///Signed In. It will then Navigate to Homepage through HomePage function
 class Wrapper extends StatelessWidget {
-
   @override
   Widget build(BuildContext context) {
     final user = Provider.of<UserUID?>(context);

@@ -7,7 +7,6 @@ import 'package:drycleaners/projectImports.dart';
 
 ///This class will build loading page after User Signs In or User gets newly register
 class Loading extends StatelessWidget {
-
   @override
   Widget build(BuildContext context) {
     return Container(

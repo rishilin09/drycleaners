@@ -42,24 +42,3 @@ export 'package:pdf/pdf.dart';
 export 'package:provider/provider.dart';
 export 'package:open_file/open_file.dart';
 export 'package:qr_flutter/qr_flutter.dart';
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

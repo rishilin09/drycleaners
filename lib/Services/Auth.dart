@@ -4,8 +4,7 @@ import 'package:firebase_auth/firebase_auth.dart';*/
 
 import 'package:drycleaners/projectImports.dart';
 
-class AuthService{
-
+class AuthService {
   ///This variable will provide instance for FireBase from which
   ///we can access various functions provided by firebase_auth.dart file
   final FirebaseAuth _auth = FirebaseAuth.instance;
@@ -14,7 +13,7 @@ class AuthService{
   ///This function will create UserUID object with value as UID and will stream it
   ///if the user provided is not null.
   ///If user is null then null value will stream
-  UserUID? _userFromFirebase(User? user){
+  UserUID? _userFromFirebase(User? user) {
     return user != null ? UserUID(uid: user.uid) : null;
   }
 
@@ -25,6 +24,7 @@ class AuthService{
   Stream<UserUID?> get user {
     return _auth.authStateChanges().map(_userFromFirebase);
   }
+
   /*
     Above function can also be return as
     Stream<UserUID?> get user {
@@ -48,7 +48,8 @@ class AuthService{
   }
 
   ///Register with provided email and password
-  Future registerWithEmailAndPassword(String email, String password, String fullName, int phoneNumber, String url) async {
+  Future registerWithEmailAndPassword(String email, String password,
+      String fullName, int phoneNumber, String url) async {
     try {
       UserCredential result = await _auth.createUserWithEmailAndPassword(
           email: email, password: password);
@@ -59,7 +60,7 @@ class AuthService{
       ///contain values for FullName, Email PhoneNumber and URL of the current user provided
       ///during RegistrationPage() Widget.
       await DataBaseServices(uid: user!.uid)
-          .storeUserData(fullName,email,phoneNumber,url);
+          .storeUserData(fullName, email, phoneNumber, url);
 
       ///When the user details will get stored, stream will start sending UID as UserUID object and Wrapper()
       ///widget will catch that stream and will navigate to HomePage() widget since it is not null.

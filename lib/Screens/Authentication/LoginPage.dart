@@ -13,6 +13,7 @@ import 'package:form_field_validator/form_field_validator.dart';
 ///This Class will show LoginPage for users if account is already been registered
 class LogInPage extends StatefulWidget {
   final Function toggleView;
+
   LogInPage({required this.toggleView});
 
   @override
@@ -20,7 +21,6 @@ class LogInPage extends StatefulWidget {
 }
 
 class _LogInPageState extends State<LogInPage> {
-
   ///Declarations and Initializations
   final _formkey = GlobalKey<FormState>();
   final AuthService _auth = AuthService();
@@ -50,7 +50,7 @@ class _LogInPageState extends State<LogInPage> {
                       CircleUI(),
 
                       ///Image and Title
-                      widgetUI(Strings.login,50.h,140.h, 0.w, 170.h,
+                      widgetUI(Strings.login, 50.h, 140.h, 0.w, 170.h,
                           ImageStrings.loginimg),
 
                       ///Login UI design
@@ -66,7 +66,6 @@ class _LogInPageState extends State<LogInPage> {
   Stack loginBuild() {
     return Stack(
       children: [
-
         ///Email TextFormField
         Padding(
           padding: EdgeInsets.only(top: 330.h, left: 27.w, right: 27.w),
@@ -78,10 +77,9 @@ class _LogInPageState extends State<LogInPage> {
                   prefixIcon: ProjectIcons.emailIcon,
                   errorStyle: TextStyle(fontSize: 12.sp, height: 0.5.h)),
               validator: MultiValidator([
-                  RequiredValidator(errorText: Strings.rEmail),
-                  EmailValidator(errorText: Strings.eEmail),
-                ]
-              ),
+                RequiredValidator(errorText: Strings.rEmail),
+                EmailValidator(errorText: Strings.eEmail),
+              ]),
               onChanged: (val) {
                 setState(() => email = val);
               },
@@ -133,7 +131,8 @@ class _LogInPageState extends State<LogInPage> {
                     await _auth.signInWithEmailAndPassword(email, password);
                 if (result == null) {
                   setState(() {
-                    error = "\t\t\t\tUsername/Password is incorrect or\nInternet Connection might not be initialized";
+                    error =
+                        "\t\t\t\tUsername/Password is incorrect or\nInternet Connection might not be initialized";
                     loading = false;
                   });
                 }
@@ -172,7 +171,6 @@ class _LogInPageState extends State<LogInPage> {
             ),
           ),
         ),
-
       ],
     );
   }
