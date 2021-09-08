@@ -28,6 +28,6 @@ This project is been divided within **lib** folder as:-
 7. **Home :-** It contains files related to Home page
 8. **Invoice :-** It contains invoice generating files
 
-For more information about the project click on to this [docs](https://drive.google.com/file/d/1oifh9rzBAZNG_zpqc2DlFTfGmBrAOVdh/view?usp=sharing)
+- For more information about the project click on to this [docs](https://drive.google.com/file/d/1oifh9rzBAZNG_zpqc2DlFTfGmBrAOVdh/view?usp=sharing)
 
 
