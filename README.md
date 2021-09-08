@@ -10,9 +10,9 @@ Application will start from **main.dart** file since it is the **ROOT OF THE PRO
 
 This project is been divided within **lib** folder as
     - lib 
-        -- config
-        -- Models
-        -- Screens
+        - config
+        - Models
+        - Screens
             * Authentication
             * Home
         * Services
