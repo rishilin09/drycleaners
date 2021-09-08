@@ -29,6 +29,10 @@ This project is been divided within **lib** folder as
 7. **Home :-** It contains files related to Home page
 8. **Invoice :-** It contains invoice generating files
 
+- **projectImports.dart** file will contain all the necessary importing files which will be required throughout the 
+  project. Rather than importing same package everytime in different file, **projectImports.dart** file will get 
+  imported which contains all the packages which every file requires.
+
 - For more information about the project click on to this [docs](https://drive.google.com/file/d/1oifh9rzBAZNG_zpqc2DlFTfGmBrAOVdh/view?usp=sharing)
 
 
