@@ -33,6 +33,6 @@ This project is been divided within **lib** folder as
   project. Rather than importing same package everytime in different file, **projectImports.dart** file will get 
   imported which contains all the packages which every file requires.
 
-- For more information about the project click on to this [docs](https://drive.google.com/file/d/1oifh9rzBAZNG_zpqc2DlFTfGmBrAOVdh/view?usp=sharing)
+- For more information about the project click on to this [docs](https://drive.google.com/file/d/1oqAAZsazRWaj6R_iHXm_bywKjvkzeW4z/view?usp=sharing)
 
 
