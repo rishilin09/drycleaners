@@ -8,16 +8,16 @@ Application will start from **main.dart** file since it is the **ROOT OF THE PRO
 
 **Assets** folder will contain *images* and *fonts* which will be used in application
 
-This project is been divided within **lib** folder as
-    -lib 
-        -config
-        -Models
-        - Screens
-            * Authentication
-            * Home
-        * Services
-            * Invoice
-        * SharedWidgets
+This project is been divided within **lib** folder as 
+-lib 
+- config
+- Models   
+- Screens   
+- Authentication
+- Home
+- Services
+- Invoice
+- SharedWidgets
 
 1. **config :-** It contains all the styling elements which will be needed into application
 2. **Models :-** It contains modal classes which will be used for storing values as their objects
