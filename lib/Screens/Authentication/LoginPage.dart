@@ -32,6 +32,11 @@ class _LogInPageState extends State<LogInPage> {
 
   @override
   Widget build(BuildContext context) {
+
+    final midPoint = error.isNotEmpty ? error.lastIndexOf('Internet') : 0;
+    String invalidError = error.isNotEmpty ? error.substring(0,midPoint) : '';
+    String connectionError = error.isNotEmpty ? error.substring(midPoint,error.length) : '';
+
     ///If loading yields to be true then it will be redirected to Loading function in Loading.dart file
     ///else if it is false then Login Page will be displayed. This will happen when user has inputted
     ///some wrong values and it doesn't get authorized.
@@ -54,7 +59,7 @@ class _LogInPageState extends State<LogInPage> {
                           ImageStrings.loginimg),
 
                       ///Login UI design
-                      loginBuild(),
+                      loginBuild(invalidError,connectionError),
                     ],
                   ),
                 ),
@@ -63,7 +68,7 @@ class _LogInPageState extends State<LogInPage> {
           );
   }
 
-  Stack loginBuild() {
+  Stack loginBuild(invalidError,connectionError) {
     return Stack(
       children: [
         ///Email TextFormField
@@ -131,8 +136,7 @@ class _LogInPageState extends State<LogInPage> {
                     await _auth.signInWithEmailAndPassword(email, password);
                 if (result == null) {
                   setState(() {
-                    error =
-                        "\t\t\t\tUsername/Password is incorrect or\nInternet Connection might not be initialized";
+                    error = 'Username/Password is incorrect or Internet Connection might not be initialized';
                     loading = false;
                   });
                 }
@@ -150,10 +154,18 @@ class _LogInPageState extends State<LogInPage> {
         Align(
           alignment: Alignment.center,
           child: Padding(
-            padding: EdgeInsets.only(top: 340.h),
-            child: Text(
-              error,
-              style: TextStyle(color: Colors.red, fontSize: 14.sp),
+            padding: EdgeInsets.only(top: 480.h),
+            child: Column(
+              children: [
+                Text(
+                  invalidError,
+                  style: TextStyle(color: Colors.red, fontSize: 14.sp),
+                ),
+                Text(
+                  connectionError,
+                  style: TextStyle(color: Colors.red, fontSize: 14.sp),
+                ),
+              ],
             ),
           ),
         ),
