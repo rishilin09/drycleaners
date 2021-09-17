@@ -12,11 +12,14 @@ class PdfApi {
   static Future<File> saveDocument(String name, Document pdf) async {
     final bytes = await pdf.save();
 
-    final dir = await getExternalStorageDirectory();
+    Directory? dir = await getExternalStorageDirectory();
+    ///print(dir); ==> '/storage/emulated/0/Android/data/com.rishi.drycleaners/files'
+    /*Directory filePath = Directory(path(dir!));
+    print(filePath);
+    await filePath.create(recursive: true);
+    final file = File('${filePath.path}/$name');*/
     final file = File('${dir!.path}/$name');
-
     await file.writeAsBytes(bytes);
-
     return file;
   }
 
@@ -26,4 +29,21 @@ class PdfApi {
     final url = file.path;
     await OpenFile.open(url);
   }
+
+  /*static String path(Directory directory) {
+    String newPath = "";
+    List<String> folders = directory.path.split("/");
+    for (int i = 1;i<folders.length;i++){
+      String folder = folders[i];
+      if(folder != "Android"){
+        newPath += "/"+folder;
+      } else {
+        break;
+      }
+    }
+    newPath = newPath+"/DryCleaners";
+    return newPath;
+  }*/
+
+
 }
