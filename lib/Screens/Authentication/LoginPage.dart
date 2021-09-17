@@ -33,6 +33,7 @@ class _LogInPageState extends State<LogInPage> {
   @override
   Widget build(BuildContext context) {
 
+    ///Error Text modifications
     final midPoint = error.isNotEmpty ? error.lastIndexOf('Internet') : 0;
     String invalidError = error.isNotEmpty ? error.substring(0,midPoint) : '';
     String connectionError = error.isNotEmpty ? error.substring(midPoint,error.length) : '';
