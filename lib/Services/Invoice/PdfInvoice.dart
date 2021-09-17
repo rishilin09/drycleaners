@@ -5,13 +5,18 @@ import 'package:printing/printing.dart';
 
 ///This Class will build the Invoice for the user
 class PdfInvoice {
+
   ///This method generates invoice. invoice parameter of Invoice type is passed which will
   ///help to create the invoice.
   static Future<File> generate(Invoice invoice) async {
+
+    ///UserDetails Variable
+    var userData = invoice.userdata;
+
     ///If the qrImg is null then qrImg will be set to 'No URL' else it will take the
     ///invoice.userdata.url value
-    final qrImg = invoice.userdata.url != 'No URL'
-        ? await networkImage(invoice.userdata.url)
+    final qrImg = userData.url != 'No URL'
+        ? await networkImage(userData.url)
         : 'No URL';
 
     ///InvoiceItems object related to Shirt will be stored in shirt variable
@@ -29,6 +34,17 @@ class PdfInvoice {
     ///Formatting the date and storing into String dateTime variable
     final String dateTime = '${date.day}/${date.month}/${date.year}\t:' +
         '\t${date.hour}:${date.minute}:${date.second}';
+
+    List<String> names = userData.fullName.split(' ');
+    String firstName = names[0];
+    String lastName = (names.length > 2) ? names[names.length-1] : names[1];
+    String nameCode = '${firstName.substring(0,1)}${lastName.substring(0,1)}';
+
+    final invoiceNumber = '${invoice.isDryCleaning ? 'DC' : 'IR'}$nameCode${date.day}${date.month}${date.year}';
+    ///print(invoiceNumber); ==> {IR/DC}{Initials of firstName and lastName}{Today's date}
+    ///for eg:- IRRL1792021  where IR is Ironing RL is Initials of the firstName and lastName of user and
+    ///the numbers are the date invoice was downloaded.
+
 
     ///myTheme will have base, bold, italic, boldItalic font types used for building invoice
     ///withFont is defined method in pdf.dart file which takes base, bold, italic, boldItalic as parameters
@@ -54,38 +70,38 @@ class PdfInvoice {
     ///Prefix pw is used with widgets which indicates that we are using widgets from pdf.dart package
     ///and not from material.dart package.
     pdf.addPage(pw.MultiPage(
-      pageTheme: _buildTheme(dateTime, PdfPageFormat.a4, myTheme),
+      pageTheme: _buildTheme(dateTime, invoiceNumber, PdfPageFormat.a4, myTheme),
       build: (context) => [
         pw.Text(Strings.title,
             style: pw.TextStyle(fontSize: 40, fontWeight: FontWeight.bold)),
         pw.SizedBox(height: 1.0 * PdfPageFormat.cm),
-        buildUserDetails(invoice, qrImg),
+        buildUserDetails(userData, qrImg),
         pw.SizedBox(height: 0.8 * PdfPageFormat.cm),
         invoice.isDryCleaning
             ? orderText('DryCleaning of clothes')
             : orderText('Ironing of Clothes'),
         pw.SizedBox(height: 1.0 * PdfPageFormat.cm),
-        buildInvoice(invoice, shirt, trousers, saree, 20),
+        buildInvoice(shirt, trousers, saree, 20),
         pw.SizedBox(height: 0.5 * PdfPageFormat.cm),
         buildPay(invoice, 25.0),
       ],
     ));
 
     ///Document will be saved
-    return PdfApi.saveDocument('${invoice.userdata.fullName}-invoice.pdf', pdf);
+    return PdfApi.saveDocument('Invoice-$invoiceNumber.pdf', pdf);
   }
 
   ///Building PageTheme for PDF file
-  static pw.PageTheme _buildTheme(dateTime, PdfPageFormat pageFormat, theme) =>
+  static pw.PageTheme _buildTheme(dateTime, invoiceNumber, PdfPageFormat pageFormat, theme) =>
       pw.PageTheme(
         pageFormat: pageFormat,
         theme: theme,
         buildBackground: (context) => pw.FullPage(
-            ignoreMargins: true, child: invoiceUI(dateTime, 430.0, 670.0)),
+            ignoreMargins: true, child: invoiceUI(dateTime, invoiceNumber, 430.0, 670.0)),
       );
 
   ///PDF background UI
-  static pw.Widget invoiceUI(dateTime, horizontal, vertical) =>
+  static pw.Widget invoiceUI(dateTime, invoiceNumber, horizontal, vertical) =>
       pw.Stack(children: [
         ///Secondary Circle
         pw.Positioned(
@@ -113,17 +129,28 @@ class PdfInvoice {
         ),
 
         pw.Positioned(
-            left: horizontal - 100.0,
-            top: vertical + 120.0,
-            child:
+            left: horizontal - 130.0,
+            top: vertical + 90.0,
+            child: pw.Column(
+              children: [
+                pw.Row(
+                  children: [
+                    invoiceTexts(Strings.invoiceNumber+':', 15.0, 5.0, false),
+                    invoiceTexts(invoiceNumber, 15.0, 5.0, true)
+                  ]
+                ),
+
                 pw.Row(mainAxisAlignment: pw.MainAxisAlignment.end, children: [
-              invoiceTexts('Date:', 18.0, 5.0, false),
-              invoiceTexts(dateTime, 18.0, 5.0, false)
-            ])),
+                  invoiceTexts('Date:', 15.0, 5.0, false),
+                  invoiceTexts(dateTime, 15.0, 5.0, true)
+                ])
+              ]
+            )
+        ),
       ]);
 
   ///PDF User Details
-  static pw.Widget buildUserDetails(Invoice invoice, qrImg) => pw.Row(
+  static pw.Widget buildUserDetails(userData, qrImg) => pw.Row(
           mainAxisAlignment: pw.MainAxisAlignment.spaceBetween,
           crossAxisAlignment: pw.CrossAxisAlignment.end,
           children: [
@@ -136,11 +163,11 @@ class PdfInvoice {
                           fontSize: 30, fontWeight: FontWeight.bold)),
                   pw.SizedBox(height: 1.0 * PdfPageFormat.cm),
                   userInvoiceDetails(
-                      Strings.fullName + ':', invoice.userdata.fullName),
+                      Strings.fullName + ':', userData.fullName),
                   userInvoiceDetails(
-                      Strings.email + ':', invoice.userdata.email),
+                      Strings.email + ':', userData.email),
                   userInvoiceDetails(Strings.phoneNumber + ':',
-                      (invoice.userdata.phoneNumber).toString()),
+                      (userData.phoneNumber).toString()),
                 ]),
             qrImg != 'No URL'
                 ? pw.Container(height: 100, width: 100, child: pw.Image(qrImg))
@@ -166,7 +193,7 @@ class PdfInvoice {
       ]);
 
   ///Item details Builder will be created in the form of Table
-  static pw.Widget buildInvoice(Invoice invoice, InvoiceItems shirt,
+  static pw.Widget buildInvoice(InvoiceItems shirt,
           InvoiceItems trousers, InvoiceItems saree, double padding) =>
       pw.Table(
           border: pw.TableBorder.all(),
@@ -218,7 +245,6 @@ class PdfInvoice {
           children: [
             pw.Row(mainAxisAlignment: pw.MainAxisAlignment.end, children: [
               invoiceTexts('Total:', 24.0, padding, true),
-              //pw.SizedBox(width: 1.0 * PdfPageFormat.cm),
               pw.Container(
                   decoration: pw.BoxDecoration(
                       border: pw.Border(

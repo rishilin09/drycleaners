@@ -46,6 +46,7 @@ class Strings {
   static const successRegister = 'You have successfully been register!!!';
   static const barcode = 'This is your Generated Barcode';
   static const orderPlaced = 'Order Placed for ';
+  static const invoiceNumber = 'Invoice Number';
 }
 
 class ImageStrings {
