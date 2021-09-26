@@ -116,7 +116,6 @@ class _LogInPageState extends State<LogInPage> {
               validator: MultiValidator([
                 RequiredValidator(errorText: Strings.rPassword),
                 LengthRangeValidator(min: 8, max: 15, errorText: Strings.ePassword)
-                //MinLengthValidator(8, errorText: Strings.ePassword),
               ]),
               obscureText: _passwordVisible,
               onChanged: (val) {
