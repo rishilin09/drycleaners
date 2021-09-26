@@ -74,6 +74,8 @@ class ProjectIcons {
   static const fullNameIcon = Icon(Icons.people_alt_rounded);
   static const phoneNumberIcon = Icon(Icons.phone);
   static const popIcon = Icon(Icons.arrow_back_ios_rounded);
+  static const downloadIcon = Icon(Icons.download_rounded);
+
 }
 
 LinearGradient gradientLayout = LinearGradient(

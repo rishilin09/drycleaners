@@ -15,12 +15,12 @@ class FinalPage extends StatelessWidget {
     final user = Provider.of<UserUID?>(context);
 
     ///Accessing values from SelectionPage
-    final counter = ModalRoute.of(context)!.settings.arguments as Items;
-    final shirt = counter.itemDetails[0];
-    final trousers = counter.itemDetails[1];
-    final saree = counter.itemDetails[2];
-    final isDryCleaning = counter.isDryCleaning;
-    final total = counter.total;
+    final items = ModalRoute.of(context)!.settings.arguments as Items;
+    final shirt = items.itemDetails[0];
+    final trousers = items.itemDetails[1];
+    final saree = items.itemDetails[2];
+    final isDryCleaning = items.isDryCleaning;
+    final total = items.total;
 
     ///StreamBuilder is implemented to collect data and to store it as Invoice object in Invoice class.
     ///Invoice class consists of some parameters and they are
@@ -174,7 +174,7 @@ class FinalPage extends StatelessWidget {
               final pdfFile = await PdfInvoice.generate(invoice);
               return PdfApi.openFile(pdfFile);
             },
-            icon: Icon(Icons.assignment),
+            icon: ProjectIcons.downloadIcon,
             label: Text(
               Strings.download,
               style: TextStyle(
