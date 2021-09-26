@@ -112,10 +112,11 @@ class _LogInPageState extends State<LogInPage> {
                         ? Icons.visibility
                         : Icons.visibility_off),
                   ),
-                  errorStyle: TextStyle(fontSize: 12.sp, height: 0.5.h)),
+                  errorStyle: TextStyle(fontSize: 12.sp, height: 0.9.h)),
               validator: MultiValidator([
                 RequiredValidator(errorText: Strings.rPassword),
-                MinLengthValidator(8, errorText: Strings.ePassword),
+                LengthRangeValidator(min: 8, max: 15, errorText: Strings.ePassword)
+                //MinLengthValidator(8, errorText: Strings.ePassword),
               ]),
               obscureText: _passwordVisible,
               onChanged: (val) {

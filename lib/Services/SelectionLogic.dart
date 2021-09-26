@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 
-///ChangeNotifier will help to change the state of the SelectionPage
+///This class will help to change the state of the SelectionPage with the use of ChangeNotifier
 class PayingServices with ChangeNotifier {
   ///Declarations and Initializations
   double _totalShirtPay = 0.0;

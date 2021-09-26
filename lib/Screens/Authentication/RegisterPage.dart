@@ -141,7 +141,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   errorStyle: TextStyle(fontSize: 12.sp, height: 0.5.h)),
               validator: MultiValidator([
                 RequiredValidator(errorText: Strings.rPassword),
-                MinLengthValidator(8, errorText: Strings.ePassword),
+                LengthRangeValidator(min: 8, max: 15, errorText: Strings.ePassword)
               ]),
               obscureText: _passwordVisible,
               onChanged: (val) {
@@ -163,13 +163,14 @@ class _RegisterPageState extends State<RegisterPage> {
                 prefixIcon: ProjectIcons.phoneNumberIcon,
                 errorStyle: TextStyle(fontSize: 12.sp, height: 0.5.h),
               ),
+              keyboardType: TextInputType.number,
               validator: MultiValidator([
                 RequiredValidator(errorText: Strings.rPhoneNumber),
                 LengthRangeValidator(
                     min: 10, max: 10, errorText: Strings.ePhoneNumber),
               ]),
               onChanged: (val) {
-                setState(() => phoneNumber = int.parse(val));
+                setState(() => val.isNotEmpty ? phoneNumber = int.parse(val) : phoneNumber = int.parse('0'));
               },
             ),
           ),

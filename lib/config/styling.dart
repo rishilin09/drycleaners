@@ -35,7 +35,7 @@ class Strings {
   static const rPhoneNumber = 'PhoneNumber is Required';
   static const rFullName = 'FullName is required';
   static const eEmail = 'Enter valid email';
-  static const ePassword = 'Enter an password greater than 8 characters';
+  static const ePassword = 'Enter a password between 8 and 15 characters';
   static const ePhoneNumber = 'Enter a 10-digit Number';
   static const services = 'Services offered';
   static const noOfClothes = 'Enter the no of the clothes';
