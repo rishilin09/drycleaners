@@ -351,7 +351,7 @@ class _SelectionPageState extends State<SelectionPage> {
             onPressed: () {
               Navigator.pop(context);
             },
-            icon: Icon(Icons.arrow_back_ios_rounded),
+            icon: ProjectIcons.popIcon,
             color: ProjectColors.primary,
             iconSize: 30.sp,
           ),
