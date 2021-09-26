@@ -75,7 +75,9 @@ class ProjectIcons {
   static const phoneNumberIcon = Icon(Icons.phone);
   static const popIcon = Icon(Icons.arrow_back_ios_rounded);
   static const downloadIcon = Icon(Icons.download_rounded);
-
+  static const detailsIcon = Icon(Icons.people_alt_rounded);
+  static const logOutIcon = Icon(Icons.logout);
+  static const uploadIcon = Icon(Icons.arrow_circle_up);
 }
 
 LinearGradient gradientLayout = LinearGradient(

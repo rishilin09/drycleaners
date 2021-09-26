@@ -61,7 +61,7 @@ class _HomePageState extends State<HomePage> {
                     Navigator.push(context,
                         MaterialPageRoute(builder: (context) => DetailsPage()));
                   },
-                  icon: Icon(Icons.people_alt_rounded),
+                  icon: ProjectIcons.detailsIcon,
                 ),
               ),
               Align(
@@ -92,7 +92,7 @@ class _HomePageState extends State<HomePage> {
                   onPressed: () async {
                     await _auth.signOut();
                   },
-                  icon: Icon(Icons.logout),
+                  icon: ProjectIcons.logOutIcon,
                 ),
               ),
               Align(
@@ -113,82 +113,77 @@ class _HomePageState extends State<HomePage> {
   }
 
   ///Services design function
-  FractionallySizedBox services() {
-    return FractionallySizedBox(
-      child: Container(
-        child: Stack(
-          children: [
-            ///Services Text
-            Positioned(
-              top: 316.h,
-              left: 13.w,
-              child: Text(
-                Strings.services,
-                style: TextStyle(
-                  fontSize: 30.sp,
-                ),
-              ),
+  Widget services() {
+    return Stack(
+      children: [
+        ///Services Text
+        Positioned(
+          top: 316.h,
+          left: 13.w,
+          child: Text(
+            Strings.services,
+            style: TextStyle(
+              fontSize: 30.sp,
             ),
+          ),
+        ),
 
-            ///List of Services
-            Padding(
-              padding: EdgeInsets.only(top: 367.h),
+        ///List of Services
+        Padding(
+          padding: EdgeInsets.only(top: 367.h),
 
-              ///To build ListView of Services
-              child: ListView.builder(
-                  itemCount: servicesList.length,
-                  itemBuilder: (context, index) {
-                    return Card(
-                      child: Theme(
-                        data: ThemeData(
-                          highlightColor: ProjectColors.dprimary,
-                          fontFamily: 'Ubuntu',
-                        ),
-                        child: ListTile(
-                          contentPadding: EdgeInsets.all(20.h),
-                          selectedTileColor: ProjectColors.primary,
-                          onTap: () {
-                            ///Navigation to SelectionPage() with selected list as a argument,
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => SelectionProvider(),
-                                settings: RouteSettings(
-                                  arguments: servicesList[index],
-                                ),
-                              ),
-                            );
-                          },
-                          title: Text(servicesList[index]),
-                          leading: Container(
-                            width: 40.w,
-                            alignment: Alignment.centerLeft,
-                            decoration: BoxDecoration(
-                              image: DecorationImage(
-                                image: AssetImage(
-                                  (servicesList[index] == 'Ironing')
-                                      ? ImageStrings.ironImg
-                                      : ImageStrings.washingImg,
-                                ),
-                              ),
+          ///To build ListView of Services
+          child: ListView.builder(
+              itemCount: servicesList.length,
+              itemBuilder: (context, index) {
+                return Card(
+                  child: Theme(
+                    data: ThemeData(
+                      highlightColor: ProjectColors.dprimary,
+                      fontFamily: 'Ubuntu',
+                    ),
+                    child: ListTile(
+                      contentPadding: EdgeInsets.all(20.h),
+                      selectedTileColor: ProjectColors.primary,
+                      onTap: () {
+                        ///Navigation to SelectionPage() with selected list as a argument,
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => SelectionProvider(),
+                            settings: RouteSettings(
+                              arguments: servicesList[index],
+                            ),
+                          ),
+                        );
+                      },
+                      title: Text(servicesList[index]),
+                      leading: Container(
+                        width: 40.w,
+                        alignment: Alignment.centerLeft,
+                        decoration: BoxDecoration(
+                          image: DecorationImage(
+                            image: AssetImage(
+                              (servicesList[index] == 'Ironing')
+                                  ? ImageStrings.ironImg
+                                  : ImageStrings.washingImg,
                             ),
                           ),
                         ),
                       ),
-                    );
-                  }),
-            ),
-          ],
+                    ),
+                  ),
+                );
+              }),
         ),
-      ),
+      ],
     );
   }
 
   ///HomeLogo Design
-  Container homeLogo() {
+  Widget homeLogo() {
     return Container(
       height: 294.h,
-      width: double.infinity,
       decoration: BoxDecoration(
         gradient: gradientLayout,
         borderRadius: BorderRadius.only(bottomLeft: Radius.circular(90.h)),

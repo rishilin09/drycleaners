@@ -194,7 +194,7 @@ class _DetailsPageState extends State<DetailsPage> {
                         ///SnackBar Creation
                         ScaffoldMessenger.of(context).showSnackBar(snackBar);
                       },
-                      icon: Icon(Icons.arrow_circle_up),
+                      icon: ProjectIcons.uploadIcon,
                       label: Text(
                         Strings.upload,
                       ),
