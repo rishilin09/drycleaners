@@ -83,7 +83,7 @@ class PayingServices with ChangeNotifier {
   double get sareePriceX => isDryCleaning ? _dSareePriceX : _iSareePriceX;
 
   ///Total cost of all clothes
-  double get totalPay => (_totalShirtPay + _totalTrousersPay + _totalSareePay);
+  double get totalPay => _totalShirtPay + _totalTrousersPay + _totalSareePay;
 
   ///Total cost of total n.o of shirts
   double get totalShirtPay => _totalShirtPay;
