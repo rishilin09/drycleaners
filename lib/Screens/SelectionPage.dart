@@ -157,9 +157,9 @@ class _SelectionPageState extends State<SelectionPage> {
     //,shirtValidate,trouserValidate,sareeValidate
     return Stack(
       children: [
-        itemChoose(436.h, ImageStrings.sareeImg, counter, _shirtValidate),
+        itemChoose(436.h, ImageStrings.sareeImg, counter, _sareeValidate),
         itemChoose(320.h, ImageStrings.trousersImg, counter, _trouserValidate),
-        itemChoose(213.h, ImageStrings.shirtImg, counter, _sareeValidate),
+        itemChoose(213.h, ImageStrings.shirtImg, counter, _shirtValidate),
       ],
     );
   }
@@ -234,7 +234,6 @@ class _SelectionPageState extends State<SelectionPage> {
   ///Due to 'final counter = Provider.of<PayingServices>(context);' variable, total value
   ///for all clothes will be displayed. Total value will keep on updating when user will change values.
   Widget payButton(PayingServices counter) {
-    //,TextEditingController shirtValidate,TextEditingController trouserValidate,TextEditingController sareeValidate
     return Positioned(
       left: 150.w,
       top: 531.h,
