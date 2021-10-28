@@ -40,8 +40,6 @@ class _SplashScreenState extends State<SplashScreen> {
 
   @override
   Widget build(BuildContext context) {
-    debugPrint('ScreenWidth: ${ScreenUtil().screenWidth.toString()}');
-    debugPrint('ScreenHeight: ${ScreenUtil().screenHeight.toString()}');
     return Scaffold(
       body: Container(
         width: ScreenUtil().screenWidth,
