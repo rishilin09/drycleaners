@@ -15,7 +15,9 @@ class FinalPage extends StatelessWidget {
     final user = Provider.of<UserUID?>(context);
 
     ///Accessing values from SelectionPage
-    final items = ModalRoute.of(context)!.settings.arguments as Items;
+    final contents = ModalRoute.of(context)!.settings.arguments as List;
+    final paymentMethod = contents[1];
+    final items = contents[0] as Items;
     final shirt = items.itemDetails[0];
     final trousers = items.itemDetails[1];
     final saree = items.itemDetails[2];
@@ -64,6 +66,7 @@ class FinalPage extends StatelessWidget {
               isDryCleaning: isDryCleaning,
               total: (total).toString(),
               date: DateTime.now(),
+              paymentMethod: paymentMethod,
             );
             return Scaffold(
               body: Container(

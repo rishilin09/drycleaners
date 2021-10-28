@@ -31,6 +31,8 @@ class PdfInvoice {
     ///invoice.date will be stored in variable date of type DateTime
     final DateTime date = invoice.date;
 
+    final String paymentMethod = invoice.paymentMethod;
+
     ///Formatting the date and storing into String dateTime variable
     final String dateTime = '${date.day}/${date.month}/${date.year}\t:' +
         '\t${date.hour}:${date.minute}:${date.second}';
@@ -70,13 +72,13 @@ class PdfInvoice {
     ///Prefix pw is used with widgets which indicates that we are using widgets from pdf.dart package
     ///and not from material.dart package.
     pdf.addPage(pw.MultiPage(
-      pageTheme: _buildTheme(dateTime, invoiceNumber, PdfPageFormat.a4, myTheme),
+      pageTheme: _buildTheme(dateTime, invoiceNumber, paymentMethod, PdfPageFormat.a4, myTheme),
       build: (context) => [
         pw.Text(Strings.title,
             style: pw.TextStyle(fontSize: 40, fontWeight: FontWeight.bold)),
         pw.SizedBox(height: 1.0 * PdfPageFormat.cm),
         buildUserDetails(userData, qrImg),
-        pw.SizedBox(height: 0.8 * PdfPageFormat.cm),
+        pw.SizedBox(height: 0.8 * PdfPageFormat.cm),///TransactionPage()  SplashScreen()
         invoice.isDryCleaning
             ? orderText('DryCleaning of clothes')
             : orderText('Ironing of Clothes'),
@@ -92,16 +94,16 @@ class PdfInvoice {
   }
 
   ///Building PageTheme for PDF file
-  static pw.PageTheme _buildTheme(dateTime, invoiceNumber, PdfPageFormat pageFormat, theme) =>
+  static pw.PageTheme _buildTheme(dateTime, invoiceNumber, payMethod, PdfPageFormat pageFormat, theme) =>
       pw.PageTheme(
         pageFormat: pageFormat,
         theme: theme,
         buildBackground: (context) => pw.FullPage(
-            ignoreMargins: true, child: invoiceUI(dateTime, invoiceNumber, 430.0, 670.0)),
+            ignoreMargins: true, child: invoiceUI(dateTime, invoiceNumber, payMethod, 480.0, 720.0)),
       );
 
   ///PDF background UI
-  static pw.Widget invoiceUI(dateTime, invoiceNumber, horizontal, vertical) =>
+  static pw.Widget invoiceUI(dateTime, invoiceNumber, paymentMethod, horizontal, vertical) =>
       pw.Stack(children: [
         ///Secondary Circle
         pw.Positioned(
@@ -129,8 +131,15 @@ class PdfInvoice {
         ),
 
         pw.Positioned(
-            left: horizontal - 130.0,
-            top: vertical + 90.0,
+          left: 50,
+          top: 660,
+          child: invoiceTexts('Payment was done via $paymentMethod', 12.sp, 10.0, true),
+        ),
+
+
+        pw.Positioned(
+            left: horizontal - 150.0,
+            top: vertical + 50.0,
             child: pw.Column(
               children: [
                 pw.Row(

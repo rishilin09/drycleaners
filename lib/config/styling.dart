@@ -47,6 +47,7 @@ class Strings {
   static const barcode = 'This is your Generated Barcode';
   static const orderPlaced = 'Order Placed for ';
   static const invoiceNumber = 'Invoice Number';
+  static const selectPayMethod = 'Select your payment method';
 }
 
 class ImageStrings {
@@ -63,6 +64,10 @@ class ImageStrings {
   static const sareeImg = 'assets/images/saree.png';
   static const saree1Img = 'assets/images/saree1.png';
   static const profileDetailsImg = 'assets/images/profileDetails.svg';
+  static const cash = 'assets/images/cash.png';
+  static const card = 'assets/images/card.png';
+  static const netBanking = 'assets/images/net-banking.png';
+  static const upi = 'assets/images/upi.png';
 }
 
 class ProjectIcons {

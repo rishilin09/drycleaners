@@ -4,8 +4,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:drycleaners/config/styling.dart';
 import 'package:provider/provider.dart';*/
 
+
 import 'package:drycleaners/projectImports.dart';
-import 'package:drycleaners/Screens/FinalPage.dart';
 
 ///This class will provide values for the SelectionPage class using ChangeNotifierProvider function
 ///which creates a provider of class PayingServices() in lib->Services->SelectionLogic.dart file
@@ -173,7 +173,6 @@ class _SelectionPageState extends State<SelectionPage> {
           children: <Widget>[
             //Image
             Image.asset(img),
-
             //Multiply text
             Text(
               'X',
@@ -255,7 +254,7 @@ class _SelectionPageState extends State<SelectionPage> {
               Navigator.pushReplacement(
                   context,
                   MaterialPageRoute(
-                      builder: (context) => FinalPage(),
+                      builder: (context) => TransactionPage(),
                       settings: RouteSettings(
                           arguments: Items(
                               isDryCleaning: isDryCleaning,
@@ -314,34 +313,8 @@ class _SelectionPageState extends State<SelectionPage> {
   Stack chooseWidgetUI() {
     return Stack(
       children: [
-        ///Secondary Circle
-        Positioned(
-          left: 239.w,
-          bottom: 504.h,
-          child: Container(
-            width: 250.w,
-            height: 250.h,
-            decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              color: ProjectColors.secondary,
-            ),
-          ),
-        ),
 
-        ///Primary Circle
-        Positioned(
-          right: 235.w,
-          top: 504.h,
-          child: Container(
-            width: 250.w,
-            height: 250.h,
-            decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              color: ProjectColors.primary,
-            ),
-          ),
-        ),
-
+        CircleDiagonal(leftRight: 235.w, topBottom: 504.h),
         ///AppBar
         AppBar(
           backgroundColor: Colors.transparent,

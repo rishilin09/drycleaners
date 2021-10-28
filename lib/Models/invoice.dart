@@ -8,6 +8,7 @@ class Invoice {
   final bool isDryCleaning;
   final String total;
   final DateTime date;
+  final String paymentMethod;
 
   Invoice(
       {required this.title,
@@ -15,7 +16,8 @@ class Invoice {
       required this.invoiceItems,
       required this.isDryCleaning,
       required this.total,
-      required this.date});
+      required this.date,
+      required this.paymentMethod});
 }
 
 ///For storing invoice items
